@@ -1,0 +1,270 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fundo da Página: Câmera Polaroid + Tons de Verde Pastel */
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    
+    /* Cor de fundo verde pastel suave (usada se a imagem demorar a carregar) */
+    background-color: #e4f1e1; 
+    
+    /* Imagem da câmera polaroid no fundo (Substitua o link pelo caminho da sua imagem) */
+    background-image: url('img/camera.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* Opcional: Adiciona uma película verde bem transparente por cima da imagem de fundo para harmonizar a paleta */
+    background-blend-mode: soft-light;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+/* --- CONTROLE DE MÚSICA --- */
+.controle-musica {
+    position: absolute;
+    top: 20px;
+    right: 20px; /* Posiciona no canto superior direito */
+    z-index: 30; /* Fica acima de tudo na página */
+    cursor: pointer; /* Muda a setinha do mouse para uma mãozinha */
+    transition: transform 0.3s ease;
+}
+
+/* Tamanho do ícone de música */
+#icone-musica {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Deixa a imagem redonda, como um disco ou botão (remova se preferir o formato quadrado da polaroid) */
+    padding: 5px; /* Reduz o padding da polaroid para ficar mais delicado */
+}
+
+/* Efeito ao passar o mouse por cima */
+.controle-musica:hover {
+    transform: scale(1.1); /* Dá uma leve aumentada */
+}
+
+/* --- ANIMAÇÃO QUANDO ESTIVER TOCANDO --- */
+.tocando {
+    animation: girarDisco 4s linear infinite;
+}
+
+@keyframes girarDisco {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- TEXTOS DO TOPO E DA BASE --- */
+.texto-topo, .texto-base {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Garante que fiquem perfeitamente centralizados */
+    z-index: 20; /* Mantém o texto acima de todas as imagens flutuantes */
+    
+    /* Estilização combinando com a paleta */
+    font-family: 'Courier New', Courier, monospace; /* Fonte estilo máquina/polaroid vintage */
+    color: #2e4f30; /* Verde musgo escuro para contrastar com o fundo pastel */
+    letter-spacing: 4px; /* Espaçamento elegante entre as letras */
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7); /* Sombra clara para garantir leitura em fundos estampados */
+}
+
+.texto-topo {
+    top: 5%; /* Distância do topo da tela */
+    font-size: 2.5rem;
+}
+
+.texto-base {
+    bottom: 5%; /* Distância do final da tela */
+    font-size: 2.5rem;
+}
+
+/* Container principal */
+.scenery-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- EFEITO POLAROID (Aplicado a todas as imagens) --- */
+.polaroid {
+    background-color: #ffffff; /* Fundo branco do papel fotográfico */
+    /* Padding cria a borda: 10px topo/lados, 45px embaixo para o visual clássico */
+    padding: 10px 10px 45px 10px; 
+    border-radius: 2px; /* Cantos levemente menos afiados */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra para dar profundidade */
+    /* Garante que a imagem se ajuste dentro do padding */
+    object-fit: cover; 
+}
+
+/* --- 1. O PERSONAGEM --- */
+.character {
+    position: relative;
+    z-index: 10;
+    width: 300px;
+    height: auto;
+    animation: floatCharacter 4s ease-in-out infinite;
+}
+
+@keyframes floatCharacter {
+    0% { transform: translateY(0px) rotate(-2deg); } /* Rotação leve para parecer uma foto solta */
+    50% { transform: translateY(-15px) rotate(1deg); }
+    100% { transform: translateY(0px) rotate(-2deg); }
+}
+
+/* --- 2. OS ITENS FLUTUANTES --- */
+.floating-item {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+    width: 100px; /* Tamanho das fotinhos flutuantes */
+}
+
+/* Posições e atrasos de animação variados para um efeito mais orgânico */
+.item-1 {
+    left: 15%;
+    top: 20%;
+    animation: floatItemOne 6s ease-in-out infinite;
+}
+
+.item-2 {
+    right: 20%;
+    top: 15%;
+    animation: floatItemTwo 8s ease-in-out infinite;
+}
+
+.item-3 {
+    left: 25%;
+    bottom: 20%;
+    animation: floatItemOne 7s ease-in-out infinite;
+}
+
+.item-4 {
+    right: 15%;
+    bottom: 25%;
+    animation: floatItemTwo 5s ease-in-out infinite;
+}
+
+.item-4 {
+    right: 15%;
+    bottom: 25%;
+    animation: floatItemTwo 5s ease-in-out infinite;
+}
+
+/* Animações das mini-polaroids */
+@keyframes floatItemOne {
+    0% { transform: translateY(0px) rotate(10deg); }
+    50% { transform: translateY(-30px) rotate(25deg); }
+    100% { transform: translateY(0px) rotate(10deg); }
+}
+
+@keyframes floatItemTwo {
+    0% { transform: translateY(0px) rotate(-15deg) scale(1); }
+    50% { transform: translateY(25px) rotate(-5deg) scale(1.05); }
+    100% { transform: translateY(0px) rotate(-15deg) scale(1); }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (Telas menores, como tablets e celulares)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    
+    /* 1. Ajusta os Textos */
+    .texto-topo {
+        font-size: 1.8rem;
+        top: 10%; /* Desce um pouquinho para não encostar no botão de música */
+    }
+
+    .texto-base {
+        font-size: 1.2rem;
+        bottom: 8%;
+    }
+
+    /* 2. Diminui o Personagem Principal */
+    .character {
+        /* Em vez de um tamanho fixo, ele usa 55% da largura da tela do celular */
+        width: 55vw; 
+        max-width: 250px; /* Mas nunca passa de 250px */
+    }
+
+    /* 3. Diminui as Polaroids Flutuantes */
+    .floating-item {
+        width: 65px; /* De 100px para 65px */
+    }
+
+    /* 4. Empurra os itens mais para as bordas da tela para liberar o centro */
+    .item-1 {
+        left: 2%;
+        top: 15%;
+    }
+
+    .item-2 {
+        right: 2%;
+        top: 15%;
+    }
+
+    .item-3 {
+        left: 5%;
+        bottom: 18%;
+    }
+
+    .item-4 {
+        right: 5%;
+        bottom: 22%;
+    }
+
+    /* 5. Ajusta o botão de música */
+    .controle-musica {
+        top: 15px;
+        right: 15px;
+    }
+
+    #icone-musica {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE EXTRA (Celulares com telas muito estreitas)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+    
+    .texto-topo {
+        font-size: 1.5rem;
+    }
+
+    .character {
+        width: 65vw; /* Aumenta um pouquinho a proporção na tela minúscula */
+    }
+
+    .floating-item {
+        width: 50px; /* Reduz ainda mais os itens laterais */
+    }
+    
+    /* Esconde algumas polaroids se a tela for extremamente apertada (Opcional) */
+    /* .item-3, .item-4 { display: none; } */
+}
+
+/* --- EFEITO DE TRANSIÇÃO PARA A TROCA DE FOTOS --- */
+.polaroid {
+    /* ... suas outras regras da polaroid continuam aqui ... */
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease; /* Adiciona transição de opacidade */
+}
+
+/* Classe que o JavaScript vai adicionar e remover */
+.fade-out {
+    opacity: 0 !important;
+}
