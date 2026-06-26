@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap');
+
+
 /* Reset básico */
 * {
     margin: 0;
@@ -70,7 +73,7 @@ body, html {
     z-index: 20; /* Mantém o texto acima de todas as imagens flutuantes */
     
     /* Estilização combinando com a paleta */
-    font-family: 'Courier New', Courier, monospace; /* Fonte estilo máquina/polaroid vintage */
+     font-family: "Henny Penny", system-ui; /* Fonte estilo máquina/polaroid vintage  - 'Courier New', Courier, monospace*/
     color: #2e4f30; /* Verde musgo escuro para contrastar com o fundo pastel */
     letter-spacing: 4px; /* Espaçamento elegante entre as letras */
     text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7); /* Sombra clara para garantir leitura em fundos estampados */
